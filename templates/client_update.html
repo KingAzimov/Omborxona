@@ -56,21 +56,21 @@
           <!-- Modal Header -->
 
           <!-- Modal body -->
-          <form method="get" action="/bolimlar/clientlar/update/<int:pk>" id="edit-product-form" >{% csrf_token %}
+          <form method="post" action="/bolimlar/clientlar/update/{{mijoz.id}}" id="edit-product-form" >{% csrf_token %}
               <label for="edit-product-name">FIO:</label>
-              <input type="text" name="ism" value="{{client.name}}" placeholder="Mijoz to'liq ismi..." id="edit-product-name" class="form-control" required>
+              <input type="text" name="ism" value="{{mijoz.ism}}" id="edit-product-name" class="form-control" required>
                 <br>
               <label for="edit-product-name">Do'kon nomi:</label>
-              <input type="text" name="nom" value="{{client.shop_name}}" placeholder="Do'kon nomi..." id="edit-product-brend" class="form-control" required>
+              <input type="text" name="nom" value="{{mijoz.nom}}" id="edit-product-brend" class="form-control" required>
               <br>
               <label for="edit-product-name">Telefon raqami:</label>
-              <input type="text" name="tel" value="{{client.phone}}" placeholder="Telefon raqami..." id="edit-product-price" class="form-control" required>
+              <input type="text" name="tel" value="{{mijoz.tel}}" id="edit-product-price" class="form-control" required>
               <br>
               <label for="edit-product-name">Qarzi:</label>
-              <input type="text" name="qarz" value="{{client.shop_name}}" placeholder="Do'kon nomi..." id="edit-product-loan" class="form-control" required>
+              <input type="text" name="qarz" value="{{mijoz.qarz}}" id="edit-product-loan" class="form-control" required>
               <br>
               <label for="edit-product-name">Manzili:</label>
-              <input type="text" name="manzil" value="{{client.address}}" placeholder="Mijoz manzili..." id="edit-product-amount" class="form-control" required>
+              <input type="text" name="manzil" value="{{mijoz.manzil}}" id="edit-product-amount" class="form-control" required>
               <br>
 
           <!-- Modal footer -->

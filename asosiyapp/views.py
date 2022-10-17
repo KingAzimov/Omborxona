@@ -83,18 +83,23 @@ class ClientupdateView(View):
         if request.user.is_authenticated:
             hozirgi_sotuvchi=Sotuvchi.objects.get(user=request.user)
             m=Mijoz.objects.get(id=pk)
-            if m.sotuvchi == hozirgi_sotuvchi and request.user.is_staff:
-                m.update(
-                    nom=request.POST.get("nom"),
-                    ism=request.POST.get("ism"),
-                    manzil=request.POST.get("manzil"),
-                    tel=request.POST.get("tel"),
-                    qarz=request.POST.get("qarz"),
-                    sotuvchi=Sotuvchi.objects.filter(user=request.user)[0]
-                )
-                return render(request, 'client_update.html')
-        else:
-            return redirect('/')
+            if m.sotuvchi == hozirgi_sotuvchi and request.user.is_authenticated:
+                data={
+                    "mijoz":m
+                }
+                return render(request, 'client_update.html', data)
+            else:
+                return redirect('/bolimlar/clientlar/')
+
+    def post(self, request, pk):
+        Mijoz.objects.filter(id=pk).update(
+            nom=request.POST.get("nom"),
+            ism=request.POST.get("ism"),
+            manzil=request.POST.get("manzil"),
+            tel=request.POST.get("tel"),
+            qarz=request.POST.get("qarz")
+        )
+        return redirect('/bolimlar/clientlar/')
 
 class ProductupdateView(View):
     def get(self, request, pk):

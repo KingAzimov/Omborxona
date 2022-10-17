@@ -41,7 +41,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link active">Home</a>
+        <a href="/bolimlar/" class="nav-link active">Home</a>
       </li>
     </ul>
 
@@ -78,19 +78,19 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-header">Menu</li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/stats/" class="nav-link active">
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>Statistics</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/bolimlar/clientlar/" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Clients</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/bolimlar/mahsulotlar" class="nav-link">
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Products</p>
             </a>
@@ -113,8 +113,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Clients</li>
+              <li class="breadcrumb-item"><a href="/bolimlar/">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/bolimlar/clientlar/">Clients</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'logout' %}">Logout</a></li>
             </ol>
           </div><!-- /.col -->
@@ -128,7 +128,7 @@
                 <div class="d-flex justify-content-between">
                   <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Statistika qo'shish</button>
                     <form action="/stats/" method="get">
-                        <input name="soz" type="text">
+                        <input name="soz" type="text" placeholder="Mijoz yoki mahsulot nomi:">
                          <button type="submit">Qidirish</button>
                     </form>
                 </div>
@@ -179,22 +179,19 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" method="post">{% csrf_token %}
+          <form action="/stats/" id="new-product-form" method="post">{% csrf_token %}
             <div class="modal-body">
-              <label for="product">Product:</label>
-             <input type="datetime-local" name="sana" placeholder="Sana" id="product" class="form-control" required>
-                <br>
-              <label for="client">Client:</label>
-                <input type="datetime-local" name="sana" placeholder="Sana" id="client" class="form-control" required>
+                <label for="Mahsulot_id">Mahsulot:</label>
+              <input type="text" name="mahsulot" placeholder="Mahsulot_nomi" id="Mahsulot_id" class="form-control" required>
               <br>
-              <label for="sana">Sana:</label>
-              <input type="datetime-local" name="sana" placeholder="Sana" id="sana" class="form-control" required>
+                <label for="Mijoz_id">Mijoz:</label>
+              <input type="text" name="mijoz" placeholder="Mijoz_ismi" id="Mijoz_id" class="form-control" required>
               <br>
                 <label for="miqdor">Miqdor:</label>
               <input type="number" name="miqdor" placeholder="Miqdor" id="miqdor" class="form-control" required>
               <br>
               <label for="umumiy_summa">Umumiy summa:</label>
-              <input type="number" name="summa" placeholder="Umumiy summa" id="umumiy_summa" class="form-control" required>
+              <input type="number" name="jami" placeholder="Jami" id="umumiy_summa" class="form-control" required>
               <br>
                 <label for="nasiya">Nasiya:</label>
               <input type="number" name="nasiya" placeholder="Nasiya" id="nasiya" class="form-control" required>
