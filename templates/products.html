@@ -113,9 +113,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="stats">Home</a></li>
+              <li class="breadcrumb-item"><a href="/bolimlar/">Home</a></li>
               <li class="breadcrumb-item active">Clients</li>
-                <li class="breadcrumb-item"><a href="logout">Logout</a></li>
+                <li class="breadcrumb-item"><a href="/logout/">Logout</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -149,7 +149,8 @@
                             <td>{{m.brand}}</td>
                             <td>{{m.miqdor}}</td>
                             <td>{{m.olchov}}</td>
-                            <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td><a href="/bolimlar/pr_update/{{m.id}}"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td><a href="/bolimlar/pr_delete/{{m.id}}/"><button type="button" class="btn btn-danger">O'chirish</button></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -170,19 +171,19 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" >
+          <form method="post" action="/bolimlar/mahsulotlar/" id="new-product-form" >{% csrf_token %}
             <div class="modal-body">
               <label for="new-product-name">Nomi:</label>
-              <input type="text" name="pr_name" placeholder="Mahsulot nomi..." id="new-product-name" class="form-control" required>
+              <input type="text" name="nom" placeholder="Mahsulot nomi..." id="new-product-name" class="form-control" required>
               <br>
               <label for="new-product-name">Brend:</label>
-              <input type="text" name="pr_brand" placeholder="Mahsulot brendi..." id="new-product-brend" class="form-control" required>
+              <input type="text" name="brand" placeholder="Mahsulot brendi..." id="new-product-brend" class="form-control" required>
               <br>
               <label for="new-product-name">Narxi:</label>
-              <input type="text" name="pr_price" placeholder="Maxsulot narxi..." id="new-product-price" class="form-control" required>
+              <input type="text" name="narx" placeholder="Maxsulot narxi..." id="new-product-price" class="form-control" required>
               <br>
               <label for="new-product-name">Miqdori:</label>
-              <input type="number" name="pr_amount" placeholder="Mahsulot miqdori..." id="new-product-amount" class="form-control" required>
+              <input type="number" name="miqdor" placeholder="Mahsulot miqdori..." id="new-product-amount" class="form-control" required>
               <br>
             </div>
     
@@ -213,5 +214,6 @@
 <script src="{% static 'dist/js/demo.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'dist/js/pages/dashboard3.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

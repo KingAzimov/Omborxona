@@ -9,11 +9,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="% static 'plugins/fontawesome-free/css/all.min.css' %">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="% static 'dist/css/adminlte.min.css' %">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -87,7 +87,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/goods/" class="nav-link">
+            <a href="/bolimlar/mahsulotlar/" class="nav-link">
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Products</p>
             </a>
@@ -110,7 +110,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-             <li class="breadcrumb-item"><a href="#">Home</a></li>
+             <li class="breadcrumb-item"><a href="/bolimlar/">Home</a></li>
               <li class="breadcrumb-item active">Clients</li>
               <li class="breadcrumb-item"><a href="/logout/">Logout</a></li>
             </ol>
@@ -146,7 +146,8 @@
                             <td>{{c.nom}}</td>
                             <td>{{c.tel}}</td>
                             <td>{{c.manzil}}</td>
-                            <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td><a href="/bolimlar/clientlar/update/{{c.id}}"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td><a href="/bolimlar/cl_delete/{{c.id}}/"><button type="submit" class="btn btn-danger" data-toggle="modal">O'chirish</button></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -166,19 +167,22 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" >
+          <form method="post" action="/bolimlar/clientlar/" id="new-product-form" >{% csrf_token %}
             <div class="modal-body">
               <label for="new-product-name">FIO:</label>
-              <input type="text" name="client_name" placeholder="Mijoz to'liq ismi..." id="new-product-name" class="form-control" required>
+              <input type="text" name="ism" placeholder="Mijoz to'liq ismi..." id="new-product-name" class="form-control" required>
                 <br>
               <label for="new-product-name">Do'kon nomi:</label>
-              <input type="text" name="client_shop" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
+              <input type="text" name="nom" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
               <br>
               <label for="new-product-name">Telefon raqami:</label>
-              <input type="text" name="client_phone" placeholder="Telefon raqami..." id="new-product-price" class="form-control" required>
+              <input type="text" name="tel" placeholder="Telefon raqami..." id="new-product-price" class="form-control" required>
+              <br>
+              <label for="new-product-name">Qarzi:</label>
+              <input type="text" name="qarz" placeholder="Qarzi..." id="new-product-loan" class="form-control" required>
               <br>
               <label for="new-product-name">Manzili:</label>
-              <input type="text" name="client_address" placeholder="Mijoz manzili..." id="new-product-amount" class="form-control" required>
+              <input type="text" name="manzil" placeholder="Mijoz manzili..." id="new-product-amount" class="form-control" required>
               <br>
             </div>
     
