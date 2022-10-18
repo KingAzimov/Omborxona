@@ -28,13 +28,19 @@ class StatistikaView(View):
     def post(self, request):
         if request.user.is_authenticated:
             Statistika.objects.create(
-                mahsulot=Mahsulot.objects.filter(nom__contains="mahsulot")[0],
-                mijoz=Mijoz.objects.filter(ism__contains="mijoz")[0],
+                mahsulot=Mahsulot.objects.filter(nom__contains=request.POST.get("mahsulot"))[0],
+                mijoz=Mijoz.objects.filter(ism__contains=request.POST.get("mijoz"))[0],
                 miqdor=request.POST.get("miqdor"),
                 jami=request.POST.get("jami"),
                 tolandi=request.POST.get("tolandi"),
                 nasiya=request.POST.get("nasiya"),
             )
+            a=Mijoz.objects.filter(ism__contains=request.POST.get("mijoz"))[0]
+            a.qarz+=int(request.POST.get("nasiya"))
+            a.save()
+            b=Mahsulot.objects.filter(nom__contains=request.POST.get("mahsulot"))[0]
+            b.miqdor-=int(request.POST.get("miqdor"))
+            b.save()
             return redirect('/stats/')
         else:
             return redirect('/')
